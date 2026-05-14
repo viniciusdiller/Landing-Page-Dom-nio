@@ -2,24 +2,24 @@ import React, { useState } from 'react';
 import { useTranslation } from '../hooks/useTranslation';
 
 export default function FAQ() {
-  const t = useTranslation();
+  const { t } = useTranslation();
   const [open, setOpen] = useState(null);
 
-  const faqs = [
-    { q: t('faq.q1'), a: t('faq.a1') },
-    { q: t('faq.q2'), a: t('faq.a2') },
-    { q: t('faq.q3'), a: t('faq.a3') },
-    { q: t('faq.q4'), a: t('faq.a4') },
-    { q: t('faq.q5'), a: t('faq.a5') },
-  ];
+  const faqs = t.faq.items;
 
   const toggle = (i) => setOpen(prev => prev === i ? null : i);
 
   return (
     <section id="faq" className="py-20 px-4">
       <div className="max-w-3xl mx-auto">
-        <h2 className="text-3xl font-bold text-center mb-4 gradient-text">{t('faq.title')}</h2>
-        <p className="text-center text-zinc-400 mb-12">{t('faq.subtitle')}</p>
+        <div className="text-center mb-12">
+          <span className="inline-block px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest border border-orange-500/30 bg-orange-500/10 text-orange-400 mb-4">
+            {t.faq.badge}
+          </span>
+          <h2 className="text-4xl md:text-5xl font-black tracking-tight">
+            {t.faq.title}
+          </h2>
+        </div>
 
         <div className="space-y-3">
           {faqs.map((faq, i) => (
