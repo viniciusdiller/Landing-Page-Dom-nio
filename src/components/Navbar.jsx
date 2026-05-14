@@ -2,25 +2,18 @@ import React, { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { useTranslation } from '../hooks/useTranslation';
 
-const LANGUAGES = [
-  { code: 'pt', label: 'PT-BR', flag: '🇧🇷' },
-  { code: 'en', label: 'EN',    flag: '🇺🇸' },
-  { code: 'es', label: 'ES',    flag: '🇪🇸' },
-  { code: 'fr', label: 'FR',    flag: '🇫🇷' },
-];
-
 export default function Navbar({ darkMode, setDarkMode, setSection }) {
-  const { language, setLanguage } = useLanguage();
-  const t = useTranslation();
+  const { language, setLanguage, LANGUAGES } = useLanguage();
+  const { t } = useTranslation();
   const [langOpen, setLangOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const current = LANGUAGES.find(l => l.code === language) || LANGUAGES[0];
+  const current = LANGUAGES.find(l => l.code === language) ?? LANGUAGES[0];
 
   const navLinks = [
     { key: 'about',    label: t('nav.about') },
     { key: 'products', label: t('nav.products') },
-    { key: 'faq',      label: t('nav.faq') },
+    { key: 'faq',      label: t('faq.title') },
     { key: 'contact',  label: t('nav.contact') },
   ];
 
@@ -40,7 +33,7 @@ export default function Navbar({ darkMode, setDarkMode, setSection }) {
         <button onClick={() => setSection('home')} className="flex items-center gap-2">
           <img
             src={darkMode ? '/images/logo-big-dark.jpg' : '/images/logo-big-light.jpg'}
-            alt="Rodízio Race"
+            alt="MeChama"
             className="h-10 w-auto"
           />
         </button>
@@ -90,13 +83,13 @@ export default function Navbar({ darkMode, setDarkMode, setSection }) {
               </svg>
             </button>
             {langOpen && (
-              <div className="absolute right-0 mt-1 w-32 rounded-xl glass shadow-xl overflow-hidden animate-fade-in z-50">
+              <div className="absolute right-0 mt-1 w-36 rounded-xl glass shadow-xl overflow-hidden animate-fade-in z-50">
                 {LANGUAGES.map(l => (
                   <button
                     key={l.code}
                     onClick={() => { setLanguage(l.code); setLangOpen(false); }}
                     className={`w-full flex items-center gap-2 px-3 py-2 text-sm hover:bg-white/10 transition-colors
-                      ${language === l.code ? 'text-orange-400' : 'text-zinc-300'}`}
+                      ${language === l.code ? 'text-orange-400 font-medium' : 'text-zinc-300'}`}
                   >
                     <span>{l.flag}</span><span>{l.label}</span>
                   </button>
@@ -105,6 +98,7 @@ export default function Navbar({ darkMode, setDarkMode, setSection }) {
             )}
           </div>
 
+          {/* Mobile menu toggle */}
           <button
             className="md:hidden p-2 text-zinc-400 hover:text-orange-400 transition-colors"
             onClick={() => setMenuOpen(prev => !prev)}
