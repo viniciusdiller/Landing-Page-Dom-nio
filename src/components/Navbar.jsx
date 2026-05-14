@@ -11,10 +11,10 @@ export default function Navbar({ darkMode, setDarkMode, setSection }) {
   const current = LANGUAGES.find(l => l.code === language) ?? LANGUAGES[0];
 
   const navLinks = [
-    { key: 'about',    label: t('nav.about') },
-    { key: 'products', label: t('nav.products') },
-    { key: 'faq',      label: t('faq.title') },
-    { key: 'contact',  label: t('nav.contact') },
+    { key: 'about',    label: t.nav.about },
+    { key: 'products', label: t.nav.products },
+    { key: 'faq',      label: t.faq.title },
+    { key: 'contact',  label: t.nav.contact },
   ];
 
   const scrollTo = (id) => {
@@ -51,7 +51,6 @@ export default function Navbar({ darkMode, setDarkMode, setSection }) {
         </div>
 
         <div className="flex items-center gap-3">
-          {/* Dark mode toggle */}
           <button
             onClick={() => setDarkMode(prev => !prev)}
             aria-label={darkMode ? 'Ativar modo claro' : 'Ativar modo escuro'}
@@ -69,7 +68,6 @@ export default function Navbar({ darkMode, setDarkMode, setSection }) {
             )}
           </button>
 
-          {/* Language selector */}
           <div className="relative">
             <button
               onClick={() => setLangOpen(prev => !prev)}
@@ -98,7 +96,6 @@ export default function Navbar({ darkMode, setDarkMode, setSection }) {
             )}
           </div>
 
-          {/* Mobile menu toggle */}
           <button
             className="md:hidden p-2 text-zinc-400 hover:text-orange-400 transition-colors"
             onClick={() => setMenuOpen(prev => !prev)}
