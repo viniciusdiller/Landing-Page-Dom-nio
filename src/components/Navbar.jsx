@@ -27,7 +27,7 @@ export default function Navbar({ darkMode, setDarkMode, setSection }) {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 glass border-b border-white/10">
+    <nav className="fixed top-0 left-0 right-0 z-50 glass border-b border-black/5 dark:border-white/10">
       <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
 
         <button onClick={() => setSection('home')} className="flex items-center gap-2">
@@ -35,6 +35,7 @@ export default function Navbar({ darkMode, setDarkMode, setSection }) {
             src={darkMode ? '/images/logo-big-dark.jpg' : '/images/logo-big-light.jpg'}
             alt="MeChama"
             className="h-10 w-auto"
+            onError={e => { e.target.style.display='none' }}
           />
         </button>
 
@@ -43,7 +44,7 @@ export default function Navbar({ darkMode, setDarkMode, setSection }) {
             <button
               key={link.key}
               onClick={() => scrollTo(link.key)}
-              className="text-sm text-zinc-300 hover:text-orange-400 transition-colors"
+              className="text-sm text-zinc-600 dark:text-zinc-300 hover:text-orange-500 dark:hover:text-purple-400 transition-colors font-medium"
             >
               {link.label}
             </button>
@@ -51,10 +52,11 @@ export default function Navbar({ darkMode, setDarkMode, setSection }) {
         </div>
 
         <div className="flex items-center gap-3">
+          {/* Dark mode toggle */}
           <button
             onClick={() => setDarkMode(prev => !prev)}
             aria-label={darkMode ? 'Ativar modo claro' : 'Ativar modo escuro'}
-            className="p-2 rounded-lg text-zinc-400 hover:text-orange-400 hover:bg-white/10 transition-all"
+            className="p-2 rounded-lg text-zinc-500 dark:text-zinc-400 hover:text-orange-500 dark:hover:text-purple-400 hover:bg-black/5 dark:hover:bg-white/10 transition-all"
           >
             {darkMode ? (
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -68,10 +70,11 @@ export default function Navbar({ darkMode, setDarkMode, setSection }) {
             )}
           </button>
 
+          {/* Language selector */}
           <div className="relative">
             <button
               onClick={() => setLangOpen(prev => !prev)}
-              className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm text-zinc-300 hover:text-orange-400 hover:bg-white/10 transition-all"
+              className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm text-zinc-600 dark:text-zinc-300 hover:text-orange-500 dark:hover:text-purple-400 hover:bg-black/5 dark:hover:bg-white/10 transition-all"
             >
               <span>{current.flag}</span>
               <span>{current.label}</span>
@@ -86,8 +89,8 @@ export default function Navbar({ darkMode, setDarkMode, setSection }) {
                   <button
                     key={l.code}
                     onClick={() => { setLanguage(l.code); setLangOpen(false); }}
-                    className={`w-full flex items-center gap-2 px-3 py-2 text-sm hover:bg-white/10 transition-colors
-                      ${language === l.code ? 'text-orange-400 font-medium' : 'text-zinc-300'}`}
+                    className={`w-full flex items-center gap-2 px-3 py-2 text-sm hover:bg-black/5 dark:hover:bg-white/10 transition-colors
+                      ${language === l.code ? 'text-orange-500 dark:text-purple-400 font-medium' : 'text-zinc-600 dark:text-zinc-300'}`}
                   >
                     <span>{l.flag}</span><span>{l.label}</span>
                   </button>
@@ -96,8 +99,9 @@ export default function Navbar({ darkMode, setDarkMode, setSection }) {
             )}
           </div>
 
+          {/* Mobile menu toggle */}
           <button
-            className="md:hidden p-2 text-zinc-400 hover:text-orange-400 transition-colors"
+            className="md:hidden p-2 text-zinc-500 dark:text-zinc-400 hover:text-orange-500 dark:hover:text-purple-400 transition-colors"
             onClick={() => setMenuOpen(prev => !prev)}
             aria-label="Menu"
           >
@@ -111,12 +115,12 @@ export default function Navbar({ darkMode, setDarkMode, setSection }) {
       </div>
 
       {menuOpen && (
-        <div className="md:hidden glass border-t border-white/10 animate-fade-in">
+        <div className="md:hidden glass border-t border-black/5 dark:border-white/10 animate-fade-in">
           {navLinks.map(link => (
             <button
               key={link.key}
               onClick={() => scrollTo(link.key)}
-              className="block w-full text-left px-6 py-3 text-sm text-zinc-300 hover:text-orange-400 hover:bg-white/10 transition-colors"
+              className="block w-full text-left px-6 py-3 text-sm text-zinc-600 dark:text-zinc-300 hover:text-orange-500 dark:hover:text-purple-400 hover:bg-black/5 dark:hover:bg-white/10 transition-colors"
             >
               {link.label}
             </button>
