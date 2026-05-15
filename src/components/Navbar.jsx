@@ -32,10 +32,10 @@ export default function Navbar({ darkMode, setDarkMode, setSection }) {
 
         <button onClick={() => setSection('home')} className="flex items-center gap-2">
           <img
-            src={darkMode ? '/images/logo-big-dark.jpg' : '/images/logo-big-light.jpg'}
+            src={darkMode ? '/images/logo-big-dark.png' : '/images/logo-big-light.png'}
             alt="MeChama"
             className="h-10 w-auto"
-            onError={e => { e.target.style.display='none' }}
+            onError={e => { e.currentTarget.style.display = 'none'; }}
           />
         </button>
 
@@ -52,7 +52,6 @@ export default function Navbar({ darkMode, setDarkMode, setSection }) {
         </div>
 
         <div className="flex items-center gap-3">
-          {/* Dark mode toggle */}
           <button
             onClick={() => setDarkMode(prev => !prev)}
             aria-label={darkMode ? 'Ativar modo claro' : 'Ativar modo escuro'}
@@ -70,7 +69,6 @@ export default function Navbar({ darkMode, setDarkMode, setSection }) {
             )}
           </button>
 
-          {/* Language selector */}
           <div className="relative">
             <button
               onClick={() => setLangOpen(prev => !prev)}
@@ -99,7 +97,6 @@ export default function Navbar({ darkMode, setDarkMode, setSection }) {
             )}
           </div>
 
-          {/* Mobile menu toggle */}
           <button
             className="md:hidden p-2 text-zinc-500 dark:text-zinc-400 hover:text-orange-500 dark:hover:text-purple-400 transition-colors"
             onClick={() => setMenuOpen(prev => !prev)}

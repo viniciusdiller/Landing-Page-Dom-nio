@@ -19,12 +19,8 @@ export default function App() {
   useEffect(() => {
     const root = document.documentElement;
     root.classList.toggle('dark', darkMode);
-
-    // Favicon
     const fav = document.getElementById('favicon');
-    if (fav) fav.href = darkMode ? '/images/icon-dark-32x32.jpg' : '/images/icon-light-32x32.jpg';
-
-    // Theme color da barra do celular
+    if (fav) fav.href = darkMode ? '/images/icon-dark-32x32.png' : '/images/icon-light-32x32.png';
     const tc = document.getElementById('theme-color');
     if (tc) tc.content = darkMode ? '#09090b' : '#fafaf9';
   }, [darkMode]);

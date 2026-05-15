@@ -23,17 +23,17 @@ export default function About() {
           <span className="inline-block px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest badge-accent mb-4">
             {t.about.badge}
           </span>
-          <h2 className="text-4xl md:text-5xl font-black tracking-tight">
+          <h2 className="text-4xl md:text-5xl font-black tracking-tight text-zinc-900 dark:text-zinc-100">
             {t.about.title}
           </h2>
         </div>
 
         <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
           <div className="space-y-6">
-            <p className="reveal opacity-0 text-zinc-500 dark:text-zinc-400 text-lg leading-relaxed">
+            <p className="reveal opacity-0 text-zinc-600 dark:text-zinc-400 text-lg leading-relaxed">
               {t.about.description1}
             </p>
-            <p className="reveal opacity-0 text-zinc-500 dark:text-zinc-400 text-lg leading-relaxed">
+            <p className="reveal opacity-0 text-zinc-600 dark:text-zinc-400 text-lg leading-relaxed">
               {t.about.description2}
             </p>
           </div>
@@ -46,7 +46,7 @@ export default function About() {
             ].map((stat, i) => (
               <div key={i} className="glass rounded-2xl p-6 text-center hover:-translate-y-1 transition-all duration-300">
                 <div className="text-3xl font-black gradient-text mb-1">{stat.value}</div>
-                <div className="text-zinc-500 text-xs font-medium leading-tight">{stat.label}</div>
+                <div className="text-zinc-500 dark:text-zinc-400 text-xs font-medium leading-tight">{stat.label}</div>
               </div>
             ))}
           </div>

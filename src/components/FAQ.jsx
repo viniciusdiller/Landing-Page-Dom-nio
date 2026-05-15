@@ -6,43 +6,41 @@ export default function FAQ() {
   const [open, setOpen] = useState(null);
 
   const faqs = t.faq.items;
-
   const toggle = (i) => setOpen(prev => prev === i ? null : i);
 
   return (
-    <section id="faq" className="py-20 px-4">
+    <section id="faq" className="py-24 md:py-32 px-6">
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-12">
-          <span className="inline-block px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest border border-orange-500/30 bg-orange-500/10 text-orange-400 mb-4">
+          <span className="inline-block px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest badge-accent mb-4">
             {t.faq.badge}
           </span>
-          <h2 className="text-4xl md:text-5xl font-black tracking-tight">
+          <h2 className="text-4xl md:text-5xl font-black tracking-tight text-zinc-900 dark:text-zinc-100">
             {t.faq.title}
           </h2>
         </div>
 
         <div className="space-y-3">
           {faqs.map((faq, i) => (
-            <div key={i} className="glass rounded-xl overflow-hidden">
+            <div key={i} className="glass rounded-xl overflow-hidden border border-black/5 dark:border-white/5">
               <button
                 onClick={() => toggle(i)}
-                className="w-full flex items-center justify-between px-6 py-4 text-left hover:bg-white/5 transition-colors"
+                className="w-full flex items-center justify-between px-6 py-4 text-left hover:bg-black/3 dark:hover:bg-white/5 transition-colors"
               >
-                <span className="font-medium text-zinc-100 pr-4">{faq.q}</span>
+                <span className="font-medium text-zinc-800 dark:text-zinc-100 pr-4">{faq.q}</span>
                 <svg
                   width="20" height="20" viewBox="0 0 24 24" fill="none"
                   stroke="currentColor" strokeWidth="2"
-                  className={`shrink-0 text-orange-400 transition-transform duration-300 ${open === i ? 'rotate-180' : ''}`}
+                  className={`shrink-0 text-orange-500 dark:text-purple-400 transition-transform duration-300 ${open === i ? 'rotate-180' : ''}`}
                 >
                   <path d="M6 9l6 6 6-6"/>
                 </svg>
               </button>
-
               <div
                 className="overflow-hidden transition-all duration-300 ease-in-out"
                 style={{ maxHeight: open === i ? '400px' : '0px' }}
               >
-                <p className="px-6 pb-5 pt-1 text-zinc-400 leading-relaxed">{faq.a}</p>
+                <p className="px-6 pb-5 pt-1 text-zinc-600 dark:text-zinc-400 leading-relaxed">{faq.a}</p>
               </div>
             </div>
           ))}
