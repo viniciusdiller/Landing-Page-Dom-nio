@@ -18,18 +18,11 @@ export default function App() {
 
   useEffect(() => {
     const root = document.documentElement;
-    if (darkMode) {
-      root.classList.add('dark');
-    } else {
-      root.classList.remove('dark');
-    }
-    // Atualiza favicon junto com o tema
-    const favicon = document.getElementById('favicon');
-    if (favicon) {
-      favicon.href = darkMode
-        ? '/images/icon-dark-32x32.jpg'
-        : '/images/icon-light-32x32.jpg';
-    }
+    root.classList.toggle('dark', darkMode);
+    const fav = document.getElementById('favicon');
+    if (fav) fav.href = darkMode ? '/images/icon-dark-32x32.png' : '/images/icon-light-32x32.png';
+    const tc = document.getElementById('theme-color');
+    if (tc) tc.content = darkMode ? '#09090b' : '#fafaf9';
   }, [darkMode]);
 
   const renderSection = () => {
@@ -51,11 +44,9 @@ export default function App() {
 
   return (
     <LanguageProvider>
-      <div className="min-h-screen bg-zinc-950 dark:bg-zinc-950 text-zinc-100 transition-colors duration-300">
+      <div className="min-h-screen transition-colors duration-300">
         <Navbar darkMode={darkMode} setDarkMode={setDarkMode} setSection={setSection} />
-        <main>
-          {renderSection()}
-        </main>
+        <main>{renderSection()}</main>
         <Footer setSection={setSection} />
       </div>
     </LanguageProvider>

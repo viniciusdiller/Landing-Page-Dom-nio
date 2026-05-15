@@ -2,32 +2,26 @@
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-
-    <link id="favicon" rel="icon" type="image/jpeg" href="/images/icon-dark-32x32.jpg" />
-    <link rel="apple-touch-icon" href="/images/apple-icon.jpg" />
-
+    <link id="favicon" rel="icon" type="image/png" href="/images/icon-dark-32x32.png" />
+    <link rel="apple-touch-icon" href="/images/apple-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#09090b" />
-
+    <meta name="theme-color" content="#09090b" id="theme-color" />
     <title>Rodízio Race — MeChama</title>
     <meta name="description" content="Rodízio Race: a competição de comida com seus amigos. Conte o que você comeu, dispute em tempo real e veja quem ganhou o rodízio." />
-
     <meta property="og:title" content="Rodízio Race — MeChama" />
     <meta property="og:description" content="Dispute em tempo real quem come mais no rodízio. Pizza, sushi, hambúrguer — você decide a batalha!" />
-    <meta property="og:image" content="/images/og-image.jpg" />
+    <meta property="og:image" content="/images/og-image.png" />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="/images/og-image.jpg" />
-
+    <meta name="twitter:image" content="/images/og-image.png" />
     <script>
       (function() {
-        var mq = window.matchMedia('(prefers-color-scheme: dark)');
-        function applyFavicon(dark) {
-          var el = document.getElementById('favicon');
-          if (el) el.href = dark ? '/images/icon-dark-32x32.jpg' : '/images/icon-light-32x32.jpg';
-        }
-        applyFavicon(mq.matches);
-        mq.addEventListener('change', function(e) { applyFavicon(e.matches); });
+        var dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (dark) document.documentElement.classList.add('dark');
+        var fav = document.getElementById('favicon');
+        if (fav) fav.href = dark ? '/images/icon-dark-32x32.png' : '/images/icon-light-32x32.png';
+        var tc = document.getElementById('theme-color');
+        if (tc) tc.content = dark ? '#09090b' : '#fafaf9';
       })();
     </script>
   </head>
